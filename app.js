@@ -11,7 +11,6 @@ app.router = Router
 window.addEventListener("DOMContentLoaded", async () => {
     loadData()
     app.router.init() // Initialize the router
-    app.router.go('/coffee')
 })
 
 const $ = (selector) => document.querySelector(selector);
