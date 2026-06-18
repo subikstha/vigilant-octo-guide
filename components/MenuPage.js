@@ -1,12 +1,24 @@
 export class MenuPage extends HTMLElement {
     constructor() {
         super()
+        // Creating a shadow DOM
+        this.root = this.attachShadow({mode: 'open'})
+
+        const styles = document.createElement("style")
+        this.root.appendChild(styles)
+
+        async function loadCSS() {
+            const request = await fetch("/components/MenuPage.css")
+            const css = await request.text()
+            styles.textContent = css
+        }
+        loadCSS()
     }
     // Connectedcallback is when the component is attached to the DOM
     connectedCallback() {
         const template = document.getElementById("menu-page-template")
         const content = template.content.cloneNode(true) // Boolean true indicates that we want a deep clone
-        this.appendChild(content)
+        this.root.appendChild(content)
     }
 }
 
